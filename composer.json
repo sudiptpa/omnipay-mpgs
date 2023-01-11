@@ -1,0 +1,33 @@
+{
+    "name": "omnipay/mpgs",
+    "type": "library",
+    "description": "MPGS driver for the Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "mastercard payment gateway service",
+        "merchant",
+        "mpgs"
+    ],
+    "homepage": "https://github.com/sudiptpa/omnipay-mpgs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sujip Thapa",
+            "email": "sudiptpa@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Mpgs\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~3.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~3.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
