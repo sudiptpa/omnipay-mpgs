@@ -7,8 +7,6 @@ namespace Omnipay\Mpgs\Message;
  */
 class CheckGatewayRequest extends AbstractRequest
 {
-    protected $action = 'information';
-
     public function getData()
     {
         return [];
@@ -20,15 +18,11 @@ class CheckGatewayRequest extends AbstractRequest
 
         $body = json_decode($httpResponse->getBody()->getContents(), true);
 
-        return $this->response = new Response($this, $body, $httpResponse);
+        return $this->createResponse($body, $httpResponse->getHeaders(), $httpResponse->getStatusCode());
     }
 
     public function getEndpoint()
     {
-        return vsprintf('%1$s/api/rest/version/%2$s/%3$s', [
-            $this->getApiUrlPrefix(),
-            $this->apiVersion,
-            $this->action,
-        ]);
+        return parent::getApiUrlPrefix() . "/api/rest/version/{$this->apiVersion}/information";
     }
 }

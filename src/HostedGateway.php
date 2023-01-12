@@ -9,7 +9,7 @@ use Omnipay\Common\AbstractGateway;
  *
  * @link https://na-gateway.mastercard.com/api/documentation/integrationGuidelines/index.html
  */
-class PaymentGateway extends AbstractGateway
+class HostedGateway extends AbstractGateway
 {
     public function getName()
     {
@@ -68,6 +68,11 @@ class PaymentGateway extends AbstractGateway
     public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Mpgs\Message\PurchaseRequest', $parameters);
+    }
+
+    public function completePurchase(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Mpgs\Message\CompletePurchaseRequest', $parameters);
     }
 
     public function retrieveTransaction(array $parameters = [])

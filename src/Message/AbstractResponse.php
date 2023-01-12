@@ -2,43 +2,45 @@
 
 namespace Omnipay\Mpgs\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Mpgs Response
+ * Class AbstractResponse.
  */
-class Response extends AbstractResponse
+class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 {
-    /**
-     * The Guzzle response object.
-     */
-    protected $guzzle_response;
-
     /**
      * @param RequestInterface $request
      * @param $data
-     * @param $response
+     * @param $headers
+     * @param $status
      */
-    public function __construct(RequestInterface $request, $data, $response)
+    public function __construct(RequestInterface $request, $data, $headers, $status)
     {
-        if (!is_array($data)) {
-            parse_str($data, $data);
-        }
-
-        parent::__construct($request, $data);
-
-        $this->guzzle_response = $response;
+        $this->request = $request;
+        $this->data = $data;
+        $this->headers = $headers;
+        $this->status = $status;
     }
 
-    public function isSuccessful()
+    public function getHeaders()
     {
-        return $this->guzzle_response && $this->guzzle_response->isSuccessful();
+        return $this->headers;
     }
 
     public function getStatusCode()
     {
-        return $this->guzzle_response && $this->guzzle_response->getStatusCode();
+        return $this->status;
+    }
+
+    public function isSuccessful()
+    {
+        return false;
+    }
+
+    public function isRedirect()
+    {
+        return false;
     }
 
     public function getMessage()

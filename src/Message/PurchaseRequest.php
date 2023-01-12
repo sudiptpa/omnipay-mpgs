@@ -4,6 +4,8 @@ namespace Omnipay\Mpgs\Message;
 
 /**
  * Mpgs Purchase Request
+ *
+ * @link https://na-gateway.mastercard.com/api/documentation/integrationGuidelines/hostedCheckout/integrationModelHostedCheckout.html?locale=en_US
  */
 class PurchaseRequest extends AbstractRequest
 {
@@ -64,6 +66,11 @@ class PurchaseRequest extends AbstractRequest
 
         $body = json_decode($httpResponse->getBody()->getContents(), true);
 
-        return $this->response = new Response($this, $body, $httpResponse);
+        return $this->createResponse($body, $httpResponse->getHeaders(), $httpResponse->getStatusCode());
+    }
+
+    public function createResponse($data, $headers = [], $status = 404)
+    {
+        return $this->response = new PurchaseResponse($this, $data, $headers, $status);
     }
 }

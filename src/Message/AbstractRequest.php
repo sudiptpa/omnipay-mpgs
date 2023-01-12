@@ -13,7 +13,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     protected $action = '';
 
-    protected $baseUrl = 'https://na-gateway.mastercard.com';
+    protected $gatewayUrl = 'https://na-gateway.mastercard.com';
 
     public function getMerchantId()
     {
@@ -47,11 +47,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function getApiUrlPrefix()
     {
-        if($baseUrl = $this->getParameter('apiUrlPrefix')) {
-            return $baseUrl;
-        }
-
-        return $this->baseUrl;
+        return $this->getParameter('apiUrlPrefix') ?: $this->gatewayUrl;
     }
 
     public function setApiUrlPrefix($value)
@@ -152,34 +148,37 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     'name' => $this->getMerchantName(),
                     'email' => $this->getMerchantEmail(),
                     'url' => $this->getMerchantUrl(),
-                    'logo' => $this->getMerchantLogo()
+                    'logo' => $this->getMerchantLogo(),
                 ],
                 'returnUrl' => $this->getReturnUrl(),
                 'cancelUrl' => $this->getCancelUrl(),
                 'timeoutUrl' => $this->getCancelUrl(),
-            ]
+            ],
         ];
     }
 
     public function getApiBaseUrl()
     {
-        return vsprintf('%1$s/api/rest/version/%2$s/merchant/%3$s', [
-            $this->getApiUrlPrefix(),
-            $this->apiVersion,
-            $this->getMerchantId(),
-        ]);
+        return $this->getApiUrlPrefix() . "/api/rest/version/" . $this->apiVersion . "/merchant/" . $this->getMerchantId();
     }
 
     public function getHeaders()
     {
+        $authToken = base64_encode("{$this->getApiUsername()}:{$this->getApiPassword()}");
+
         return [
             'Content-Type' => 'application/json;charset=UTF-8',
-            'Authorization' => "Basic " . base64_encode("{$this->getApiUsername()}:{$this->getApiPassword()}"),
+            'Authorization' => "Basic {$authToken}",
         ];
     }
 
     public function getEndpoint()
     {
-        return "{$this->getApiBaseUrl()}/{$this->action}";
+        return $this->getApiBaseUrl() . "/" . $this->action;
+    }
+
+    public function createResponse($data, $headers = [], $status = 404)
+    {
+        return $this->response = new AbstractResponse($this, $data, $headers, $status);
     }
 }
