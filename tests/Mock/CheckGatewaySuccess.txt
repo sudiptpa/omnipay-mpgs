@@ -1,0 +1,9 @@
+HTTP/1.1 200
+Cache-Control: public
+Date: Tue, 31 Jan 2023 10:08:35 GMT
+Expires: Tue, 31 Jan 2023 10:08:45 GMT
+Last-Modified: Tue, 31 Jan 2023 10:08:25 GMT
+Content-Type: application/json;charset=ISO-8859-1
+Content-Length: 53
+
+{"gatewayVersion":"22.7.0.2-6R","status":"OPERATING"}
