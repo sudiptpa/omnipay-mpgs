@@ -32,7 +32,7 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-- Hosted Checkout
+#### Hosted Checkout
 
 ```php
 
@@ -49,7 +49,7 @@ public function gateway()
 
 ```
 
-#### Purchase Request
+##### Purchase Request
 
 ```php
 try {
@@ -84,7 +84,7 @@ if ($response->isSuccessful()) {
 }
 ```
 
-#### Complete Purchase Request
+##### Complete Purchase Request
 
 ```php
 $response = $gateway->completePurchase([
