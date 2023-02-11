@@ -17,7 +17,7 @@ class CompletePurchaseRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->request('GET', $this->getEndpoint(), $this->getHeaders(), json_encode($data));
+        $httpResponse = $this->httpClient->request('GET', $this->getEndpoint(), $this->getHeaders());
 
         $body = json_decode($httpResponse->getBody()->getContents(), true);
 
