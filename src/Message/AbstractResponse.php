@@ -62,19 +62,4 @@ class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     {
         return isset($this->data['session']['id']) ? $this->data['session']['id'] : null;
     }
-
-    public function getOrderId()
-    {
-        return isset($this->data['order']['id']) ? $this->data['order']['id'] : null;
-    }
-
-    public function getTransactionId()
-    {
-        return isset($this->data['transaction']['id']) ? $this->data['transaction']['id'] : null;
-    }
-
-    public function getGatewayCode()
-    {
-        return isset($this->data['response']['gatewayCode']) ? $this->data['response']['gatewayCode'] : null;
-    }
 }

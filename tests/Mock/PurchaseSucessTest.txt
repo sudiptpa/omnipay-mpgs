@@ -1,0 +1,23 @@
+array:2 [▼ // app/Http/Controllers/OrderController.php:71
+  "error" => array:4 [▼
+    "cause" => "INVALID_REQUEST"
+    "explanation" => "Value 'AU' is invalid. Length is 2 characters, but must be at least 3"
+    "field" => "billing.address.country"
+    "validationType" => "INVALID"
+  ]
+  "result" => "ERROR"
+]
+
+array:5 [▼ // app/Http/Controllers/OrderController.php:71
+  "checkoutMode" => "WEBSITE"
+  "merchant" => "TESTMOTORCCOM201"
+  "result" => "SUCCESS"
+  "session" => array:3 [▼
+    "id" => "SESSION0002434466664M7898951L71"
+    "updateStatus" => "SUCCESS"
+    "version" => "a2c9983401"
+  ]
+  "successIndicator" => "77d6b16aba0e47e7"
+]
+
+http://localhost/sujipthapa-blog.com/public/checkout/payment/6/mastercard/failed?error.cause=INVALID_REQUEST&error.explanation=Missing%20parameters&error.field=interaction.merchant&error.validationType=MISSING&result=ERROR

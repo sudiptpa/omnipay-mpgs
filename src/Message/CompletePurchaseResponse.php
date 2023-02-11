@@ -5,9 +5,9 @@ namespace Omnipay\Mpgs\Message;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Class PurchaseResponse.
+ * Class CompletePurchaseResponse.
  */
-class PurchaseResponse extends \Omnipay\Mpgs\Message\AbstractResponse
+class CompletePurchaseResponse extends \Omnipay\Mpgs\Message\AbstractResponse
 {
     public function isSuccessful()
     {
