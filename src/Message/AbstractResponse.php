@@ -52,14 +52,4 @@ class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     {
         return $this->getMessage() == 'SUCCESS';
     }
-
-    public function getSuccessIndicator()
-    {
-        return isset($this->data['successIndicator']) ? $this->data['successIndicator'] : null;
-    }
-
-    public function getSessionId()
-    {
-        return isset($this->data['session']['id']) ? $this->data['session']['id'] : null;
-    }
 }

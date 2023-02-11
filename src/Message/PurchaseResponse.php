@@ -2,8 +2,6 @@
 
 namespace Omnipay\Mpgs\Message;
 
-use Omnipay\Common\Message\RequestInterface;
-
 /**
  * Class PurchaseResponse.
  */
@@ -14,5 +12,15 @@ class PurchaseResponse extends \Omnipay\Mpgs\Message\AbstractResponse
         $statusCode = $this->getStatusCode();
 
         return $statusCode >= 200 && $statusCode <= 399;
+    }
+
+    public function getSuccessIndicator()
+    {
+        return isset($this->data['successIndicator']) ? $this->data['successIndicator'] : null;
+    }
+
+    public function getSessionId()
+    {
+        return isset($this->data['session']['id']) ? $this->data['session']['id'] : null;
     }
 }
