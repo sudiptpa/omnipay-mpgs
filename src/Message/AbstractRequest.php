@@ -7,7 +7,7 @@ namespace Omnipay\Mpgs\Message;
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    protected $apiVersion = 70;
+    protected $apiVersion = 69;
 
     protected $operation = '';
 
