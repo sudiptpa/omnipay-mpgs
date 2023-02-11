@@ -37,7 +37,11 @@ class HostedGateway extends AbstractGateway
 
     public function getApiUsername()
     {
-        return $this->getParameter('apiUsername');
+        if ($this->getParameter('apiUsername')) {
+            return $this->getParameter('apiUsername');
+        }
+
+        return "merchant.{$this->getMerchantId()}";
     }
 
     public function setApiUsername($value)
@@ -73,11 +77,6 @@ class HostedGateway extends AbstractGateway
     public function completePurchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Mpgs\Message\CompletePurchaseRequest', $parameters);
-    }
-
-    public function retrieveTransaction(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Mpgs\Message\RetrieveTransactionRequest', $parameters);
     }
 
     public function checkGateway(array $parameters = [])

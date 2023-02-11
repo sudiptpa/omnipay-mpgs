@@ -7,7 +7,7 @@ namespace Omnipay\Mpgs\Message;
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    protected $apiVersion = 68;
+    protected $apiVersion = 70;
 
     protected $operation = '';
 
@@ -27,7 +27,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function getApiUsername()
     {
-        return $this->getParameter('apiUsername');
+        if ($this->getParameter('apiUsername')) {
+            return $this->getParameter('apiUsername');
+        }
+
+        return "merchant.{$this->getMerchantId()}";
     }
 
     public function setApiUsername($value)
@@ -123,16 +127,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setOrderId($value)
     {
         return $this->setParameter('orderId', $value);
-    }
-
-    public function getOrderTransactionId()
-    {
-        return $this->getParameter('orderTransactionId');
-    }
-
-    public function setOrderTransactionId($value)
-    {
-        return $this->setParameter('orderTransactionId', $value);
     }
 
     protected function getBaseData()

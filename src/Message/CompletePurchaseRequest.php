@@ -8,35 +8,16 @@ namespace Omnipay\Mpgs\Message;
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
-    protected $operation = 'VERIFY';
-
     public function getData()
     {
-        $this->validate('currency', 'amount', 'returnUrl', 'transactionId');
+        $this->validate('orderId');
 
-        return array_merge($this->getBaseData(), [
-            'order' => [
-                'currency' => $this->getCurrency(),
-            ]
-        ]);
-    }
-
-    public function filterDataRecursively($array = [])
-    {
-        foreach ($array as &$value) {
-            if (is_array($value)) {
-                $value = $this->filterDataRecursively($value);
-            }
-        }
-
-        return array_filter($array);
+        return [];
     }
 
     public function sendData($data)
     {
-        $data = $this->filterDataRecursively($data);
-
-        $httpResponse = $this->httpClient->request('PUT', $this->getEndpoint(), $this->getHeaders(), json_encode($data));
+        $httpResponse = $this->httpClient->request('GET', $this->getEndpoint(), $this->getHeaders(), json_encode($data));
 
         $body = json_decode($httpResponse->getBody()->getContents(), true);
 
@@ -45,11 +26,11 @@ class CompletePurchaseRequest extends AbstractRequest
 
     public function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new PurchaseResponse($this, $data, $headers, $status);
+        return $this->response = new CompletePurchaseResponse($this, $data, $headers, $status);
     }
 
     public function getEndpoint()
     {
-        return parent::getApiBaseUrl() . "/order/{$this->getOrderId()}/transaction/{$this->getOrderTransactionId()}";
+        return parent::getApiBaseUrl() . "/order/{$this->getOrderId()}";
     }
 }
