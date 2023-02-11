@@ -36,16 +36,10 @@ The following gateways are provided by this package:
 
 ```php
 
-public function gateway()
-{
-    $gateway = Omnipay::create('Mpgs_Hosted');
-
-    $gateway
+$gateway = Omnipay::create('Mpgs_Hosted')
         ->setMerchantId(xxxxxxx)
-        ->setApiPassword(xxxxxx);
-
-    return $gateway;
-}
+        ->setApiPassword(xxxxxx)
+        ->setApiUrlPrefix('https://na-gateway.mastercard.com');
 
 ```
 
