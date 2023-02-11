@@ -17,7 +17,7 @@ class CompletePurchaseRequestTest extends TestCase
         ]);
     }
 
-    public function testSendSuccess()
+    public function testSendSuccess(): void
     {
         $this->setMockHttpResponse('CompletePurchaseRequestSuccess.txt');
 
@@ -40,7 +40,7 @@ class CompletePurchaseRequestTest extends TestCase
         $this->assertSame($data['totalAuthorizedAmount'], 555.26);
     }
 
-    public function testSendError()
+    public function testSendError(): void
     {
         $this->setMockHttpResponse('CompletePurchaseRequestFailure.txt');
 

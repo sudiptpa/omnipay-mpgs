@@ -21,7 +21,7 @@ class PurchaseRequestTest extends TestCase
         ]);
     }
 
-    public function testSendSuccess()
+    public function testSendSuccess(): void
     {
         $this->setMockHttpResponse('PurchaseRequestSuccess.txt');
 
@@ -43,7 +43,7 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame($response->getSessionId(), 'SESSION0002580462196G6604316I00');
     }
 
-    public function testSendError()
+    public function testSendError(): void
     {
         $this->setMockHttpResponse('PurchaseRequestFailure.txt');
 

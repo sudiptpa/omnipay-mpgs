@@ -17,7 +17,7 @@ class CheckGatewayRequestTest extends TestCase
         ]);
     }
 
-    public function testSendSuccess()
+    public function testSendSuccess(): void
     {
         $this->setMockHttpResponse('CheckGatewaySuccess.txt');
 
@@ -33,7 +33,7 @@ class CheckGatewayRequestTest extends TestCase
         $this->assertNull($response->getMessage());
     }
 
-    public function testSendError()
+    public function testSendError(): void
     {
         $this->setMockHttpResponse('CheckGatewayFailure.txt');
 
