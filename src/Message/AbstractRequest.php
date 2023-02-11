@@ -153,7 +153,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function getApiBaseUrl()
     {
-        return $this->getApiUrlPrefix() . "/api/rest/version/" . $this->apiVersion . "/merchant/" . $this->getMerchantId();
+        return "{$this->getApiUrlPrefix()}/api/rest/version/{$this->apiVersion}/merchant/{$this->getMerchantId()}";
     }
 
     public function getHeaders()

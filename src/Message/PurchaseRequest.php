@@ -62,7 +62,12 @@ class PurchaseRequest extends AbstractRequest
     {
         $data = $this->filterDataRecursively($data);
 
-        $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), $this->getHeaders(), json_encode($data));
+        $httpResponse = $this->httpClient->request(
+            'POST',
+            $this->getEndpoint(),
+            $this->getHeaders(),
+            json_encode($data)
+        );
 
         $body = json_decode($httpResponse->getBody()->getContents(), true);
 
