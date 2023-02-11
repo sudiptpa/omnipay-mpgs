@@ -34,6 +34,70 @@ The following gateways are provided by this package:
 
 - Hosted Checkout
 
+```php
+
+    public function gateway()
+    {
+        $gateway = Omnipay::create('Mpgs_Hosted');
+
+        $gateway
+            ->setMerchantId(xxxxxxx)
+            ->setApiPassword(xxxxxx);
+
+        return $gateway;
+    }
+
+```
+
+#### Purchase Request
+
+```php
+        try {
+            $response = $gateway->purchase([
+                'merchantName' => 'Test Merchant',
+                'amount' => 10,
+                'transactionId' => 1,
+                'transactionReference' => 1,
+                'currency' => 'AUD',
+                'card' => new CreditCard([
+                    'billingFirstName' => 'First Name',
+                    'billingLastName' => 'Last Name',
+                    'email' => 'user@example.com',
+                    'billingPhone' => '1234567890',
+                    'billingAddress1' => 'Street',
+                    'billingCity' => 'City',
+                    'billingState' => 'State',
+                    'billingPostcode' => '03444',
+                    'billingCountry' => 'AUS',
+                ]),
+                'cancelUrl' => 'https://example.com/checkout/1/cancel',
+                'returnUrl' => 'https://example.com/checkout/1/success',
+                'notifyUrl' => 'https://example.com/checkout/1/notify',
+            ]);
+            
+        } catch (Exception $e) {
+           // error
+        }
+
+        if ($response->isSuccessful()) {
+            // $response->getSessionId();
+        }
+```
+
+#### Complete Purchase Request
+
+```php
+        $response = $gateway->completePurchase([
+            'orderId' => 1,
+        ]);
+
+        if ($response && $response->isSuccessful() && $response->isCaptured()) {
+            // successful
+        }
+
+        // handle error
+```
+
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
 
