@@ -26,7 +26,7 @@ class CheckGatewayRequestTest extends TestCase
 
         $this->assertIsArray($data);
         $this->assertInstanceOf('\Omnipay\Mpgs\Message\AbstractResponse', $response);
-        $this->assertEquals($data['gatewayVersion'], '22.7.0.2-6R');
+        $this->assertEquals($data['gatewayVersion'], '22.8.0.2-1R');
         $this->assertEquals($data['status'], 'OPERATING');
 
         $this->assertFalse($response->isRedirect());

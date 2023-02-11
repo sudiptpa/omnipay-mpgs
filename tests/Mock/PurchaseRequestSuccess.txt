@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Date: Sat, 11 Feb 2023 11:49:09 GMT
+Server: Apache
+Content-Length: 136
+Connection: close
+Content-Type: text/plain; charset=utf-8
+
+{"checkoutMode": "WEBSITE","merchant": "20230211","result": "SUCCESS","session": {"id": "SESSION0002580462196G6604316I00","updateStatus": "SUCCESS","version": "f1d1ae3901"},"successIndicator": "4a0f35687c204nfb"}

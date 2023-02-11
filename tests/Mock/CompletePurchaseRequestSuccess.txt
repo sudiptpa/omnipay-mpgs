@@ -1,0 +1,33 @@
+HTTP/1.1 200 
+Cache-Control: no-cache, no-store, must-revalidate
+Date: Sat, 11 Feb 2023 11:52:17 GMT
+Pragma: no-cache
+Expires: 0
+Content-Type: application/json;charset=UTF-8
+Content-Length: 7064
+
+{
+    "3dsAcsEci": "05",
+    "amount": 555.26,
+    "authenticationStatus": "AUTHENTICATION_SUCCESSFUL",
+    "authenticationVersion": "3DS2",
+    "chargeback": {
+        "amount": 0,
+        "currency": "AUD"
+    },
+    "creationTime": "2023-02-11T06:23:33.149Z",
+    "currency": "AUD",
+    "description": "Paying for the order - B342A0671",
+    "id": "3451-5454545-5454-8766",
+    "invoiceNumber": "B342A0671",
+    "lastUpdatedTime": "2023-02-11T06:24:32.156Z",
+    "merchant": "20230211",
+    "merchantAmount": 555.26,
+    "merchantCurrency": "AUD",
+    "notificationUrl": "https://example.com/checkout/webhook/5",
+    "reference": "B342A0671",
+    "result": "SUCCESS",
+    "status": "CAPTURED",
+    "totalAuthorizedAmount": 555.26,
+    "totalCapturedAmount": 555.26
+}

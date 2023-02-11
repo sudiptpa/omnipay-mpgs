@@ -6,4 +6,4 @@ Last-Modified: Tue, 31 Jan 2023 10:08:25 GMT
 Content-Type: application/json;charset=ISO-8859-1
 Content-Length: 53
 
-{"gatewayVersion":"22.7.0.2-6R","status":"OPERATING"}
+{"gatewayVersion":"22.8.0.2-1R","status":"OPERATING"}
