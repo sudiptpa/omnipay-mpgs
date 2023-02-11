@@ -2,6 +2,8 @@
 
 namespace Omnipay\Mpgs\Message;
 
+use Omnipay\Mpgs\Enums\StatusEnum;
+
 /**
  * Class CompletePurchaseResponse.
  */
@@ -31,6 +33,6 @@ class CompletePurchaseResponse extends \Omnipay\Mpgs\Message\AbstractResponse
 
     public function isCaptured()
     {
-        return in_array($this->getOrderStatus(), ['CAPTURED']);
+        return $this->getOrderStatus() == StatusEnum::CAPTURED;
     }
 }
