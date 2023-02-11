@@ -1,5 +1,5 @@
 {
-    "name": "sudiptpa/mpgs",
+    "name": "sudiptpa/omnipay-mpgs",
     "type": "library",
     "description": "MPGS driver for the Omnipay payment processing library",
     "keywords": [
