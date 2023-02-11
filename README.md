@@ -36,67 +36,105 @@ The following gateways are provided by this package:
 
 ```php
 
-    public function gateway()
-    {
-        $gateway = Omnipay::create('Mpgs_Hosted');
+public function gateway()
+{
+    $gateway = Omnipay::create('Mpgs_Hosted');
 
-        $gateway
-            ->setMerchantId(xxxxxxx)
-            ->setApiPassword(xxxxxx);
+    $gateway
+        ->setMerchantId(xxxxxxx)
+        ->setApiPassword(xxxxxx);
 
-        return $gateway;
-    }
+    return $gateway;
+}
 
 ```
 
 #### Purchase Request
 
 ```php
-        try {
-            $response = $gateway->purchase([
-                'merchantName' => 'Test Merchant',
-                'amount' => 10,
-                'transactionId' => 1,
-                'transactionReference' => 1,
-                'currency' => 'AUD',
-                'card' => new CreditCard([
-                    'billingFirstName' => 'First Name',
-                    'billingLastName' => 'Last Name',
-                    'email' => 'user@example.com',
-                    'billingPhone' => '1234567890',
-                    'billingAddress1' => 'Street',
-                    'billingCity' => 'City',
-                    'billingState' => 'State',
-                    'billingPostcode' => '03444',
-                    'billingCountry' => 'AUS',
-                ]),
-                'cancelUrl' => 'https://example.com/checkout/1/cancel',
-                'returnUrl' => 'https://example.com/checkout/1/success',
-                'notifyUrl' => 'https://example.com/checkout/1/notify',
-            ]);
-            
-        } catch (Exception $e) {
-           // error
-        }
+try {
+    $response = $gateway->purchase([
+        'merchantName' => 'Test Merchant',
+        'amount' => 10,
+        'transactionId' => 1,
+        'transactionReference' => 1,
+        'currency' => 'AUD',
+        'card' => new CreditCard([
+            'billingFirstName' => 'First Name',
+            'billingLastName' => 'Last Name',
+            'email' => 'user@example.com',
+            'billingPhone' => '1234567890',
+            'billingAddress1' => 'Street',
+            'billingCity' => 'City',
+            'billingState' => 'State',
+            'billingPostcode' => '03444',
+            'billingCountry' => 'AUS',
+        ]),
+        'cancelUrl' => 'https://example.com/checkout/1/cancel',
+        'returnUrl' => 'https://example.com/checkout/1/success',
+        'notifyUrl' => 'https://example.com/checkout/1/notify',
+    ]);
 
-        if ($response->isSuccessful()) {
-            // $response->getSessionId();
-        }
+} catch (Exception $e) {
+   // error
+}
+
+if ($response->isSuccessful()) {
+    // $response->getSessionId();
+}
 ```
 
 #### Complete Purchase Request
 
 ```php
-        $response = $gateway->completePurchase([
-            'orderId' => 1,
-        ]);
+$response = $gateway->completePurchase([
+    'orderId' => 1,
+]);
 
-        if ($response && $response->isSuccessful() && $response->isCaptured()) {
-            // successful
-        }
+if ($response && $response->isSuccessful() && $response->isCaptured()) {
+    // successful
+}
 
-        // handle error
+// handle error
 ```
+
+##### Initiate Checkout
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Processing Payment</title>
+  </head>
+  <body>
+    <div align="center">
+        <h4>Processing payment ...</h4>
+    </div>
+
+    <script
+        src="https://na-gateway.mastercard.com/static/checkout/checkout.min.js"
+        data-error="https://example.com/checkout/1/cancel"
+        data-beforeRedirect="Checkout.saveFormFields"
+        data-afterRedirect="Checkout.restoreFormFields">
+    </script>
+
+    <script type="text/javascript">
+        Checkout.configure({
+          session: {
+              id: session_id // pass the session id received from purchase request.
+          }
+        });
+
+        Checkout.showPaymentPage();
+    </script>
+  </body>
+</html>
+
+```
+
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
